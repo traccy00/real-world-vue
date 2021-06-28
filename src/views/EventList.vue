@@ -8,6 +8,7 @@
 <script>
 // @ is an alias to /src
 import EventCard from "@/components/EventCard.vue";
+import EventService from '@/services/EventService.js'
 
 export default {
   name: "EventList",
@@ -16,53 +17,19 @@ export default {
   },
   data() {
     return {
-      events: [
-        {
-          id: 5928101,
-          category: 'animal welfare',
-          title: 'Cat Adoption Day 11111111111',
-          description: 'Find your new feline friend at this event',
-          location: 'Meow Town',
-          date: 'January 28, 2022',
-          time: '12:00',
-          petsAllowed: true,
-          organizer: 'Kat Laydee'
-        },
-        {
-          id: 5928102,
-          category: 'animal welfare',
-          title: 'Cat Adoption Day 22',
-          description: 'Find your new feline friend at this event',
-          location: 'Meow Town',
-          date: 'January 28, 2022',
-          time: '12:00',
-          petsAllowed: true,
-          organizer: 'Kat Laydee'
-        },
-        {
-          id: 5928103,
-          category: 'animal welfare',
-          title: 'Cat Adoption Day 543',
-          description: 'Find your new feline friend at this event',
-          location: 'Meow Town',
-          date: 'January 28, 2022',
-          time: '12:00',
-          petsAllowed: true,
-          organizer: 'Kat Laydee'
-        },
-        {
-          id: 5928104,
-          category: 'animal welfare',
-          title: 'Cat Adoption Day 46543',
-          description: 'Find your new feline friend at this event',
-          location: 'Meow Town',
-          date: 'January 28, 2022',
-          time: '12:00',
-          petsAllowed: true,
-          organizer: 'Kat Laydee'
-        }
-      ]
+      events: null
     }
+  }, 
+  created() {
+    EventService.getEvents()
+      .then(response => { 
+      //   console.log(
+      //   'events' , response.data 
+      // )
+         this.events = response.data
+      })
+      .catch(error => {console.log(error)
+      })
   }
 };
 </script>
