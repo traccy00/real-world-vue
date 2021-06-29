@@ -17,5 +17,8 @@ export default {
     getEvents() {
         // added onto baseURL in line 6: eg:https://my-json-server.typicode.com/traccy00/fake-server/events
         return apiClient.get('/events')
+    },
+    getEvent(id) {
+        return apiClient.get('/events/' + id)
     }
 }
